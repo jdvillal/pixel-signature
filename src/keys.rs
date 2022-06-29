@@ -90,7 +90,7 @@ pub struct Keypair {
     pub pop: ProofOfPossession,
 }
 
-const PrefixPoP: &[u8] = b"PoP";
+//const PrefixPoP: &[u8] = b"PoP";
 
 impl<'a> Keypair {
     pub fn new<R: RngCore + CryptoRng>(
@@ -130,7 +130,7 @@ impl<'a> Keypair {
     }
 
     fn msg_for_pop(vk: &Verkey) -> SignatureGroup {
-        let mut s = PrefixPoP.to_vec();
+        let mut s = b"PoP".to_vec();
         s.extend_from_slice(&vk.to_bytes());
         SignatureGroup::from_msg_hash(&s)
     }
